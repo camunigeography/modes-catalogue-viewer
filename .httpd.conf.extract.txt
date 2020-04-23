@@ -1,0 +1,52 @@
+# MODES catalogue viewer Apache directives
+
+# Load using:
+#	# MODES catalogue viewer
+#	Include /path/to/modes-catalogue-viewer/.httpd.conf.extract
+#	Use MacroModesCatalogueViewer /museum/catalogue "/path/to/site/:/path/to/modes-catalogue-viewer/:/path/to/php/libraries/:/path/to/php-externallibraries/"
+
+
+<Macro MacroModesCatalogueViewer $baseUrl $includePath>
+	
+	# Include path
+	<LocationMatch $baseUrl>
+		php_value include_path "$includePath"
+	</LocationMatch>
+	
+	# Front controller application support
+	Use MacroFrontControllerApplication "$baseUrl/" "Online catalogue"
+	
+	## Application routing:
+	
+	# Top-level pages
+		RewriteRule ^$baseUrl(/|/index.html)$ $baseUrl/index.html?action=home [L]
+		RewriteRule ^$baseUrl/feedback.html$ $baseUrl/index.html?action=feedback [L]
+		RewriteRule ^$baseUrl/search/$ $baseUrl/index.html?action=globalsearch [L,QSA]
+		RewriteRule ^$baseUrl/search$ $baseUrl/search/ [L,R]
+		RewriteRule ^$baseUrl/search/page([1-9][0-9]*)\.html$ $baseUrl/index.html?action=globalsearch&page=$1 [L,QSA]
+	
+	# Articles
+		RewriteRule ^$baseUrl/article/([a-z])(.+)/$ $baseUrl/index.html?action=article&article=$1$2 [L]
+		RewriteRule ^$baseUrl/(article)/([a-z])(.+)$ $baseUrl/$1/$2$3/ [L,R]
+	
+	# Individual galleries
+		RewriteRule ^$baseUrl/([-a-z0-9]+)/cover.jpg - [L]
+		RewriteRule ^$baseUrl/([-a-z0-9]+)/$ $baseUrl/index.html?gallery=$1&action=index [L,QSA]
+		RewriteRule ^$baseUrl/([-a-z0-9]+)/(index|about|all|gallery|contacts).html$ $baseUrl/index.html?gallery=$1&action=$2 [L,QSA]
+		RewriteRule ^$baseUrl/([-a-z0-9]+)/(browse|gallery|search)/$ $baseUrl/index.html?gallery=$1&action=$2 [L,QSA]
+		RewriteRule ^$baseUrl/([-a-z0-9]+)/(browse|gallery|search)$ $baseUrl/$1/$2/ [L,R]
+		RewriteRule ^$baseUrl/([-a-z0-9]+)/(browse|gallery|search)/page([1-9][0-9]*)\.html$ $baseUrl/index.html?gallery=$1&action=$2&page=$3 [L,QSA]
+		RewriteRule ^$baseUrl/([-a-z0-9]+)$ $baseUrl/$1/ [L,R]
+	
+	# Groupings for museum items (categories, materials and artists)
+		RewriteRule ^$baseUrl/([-a-z0-9]+)/(categories|materials|artists)(/|/index.html)$ $baseUrl/index.html?action=$2&gallery=$1 [L]
+		RewriteRule ^$baseUrl/([-a-z0-9]+)/(categories|materials|artists)$ $baseUrl/$1/$2/ [L,R]
+		RewriteRule ^$baseUrl/([-a-z0-9]+)/categories/hierarchy.html $baseUrl/index.html?action=hierarchy&gallery=$1 [L]
+		# The artist name in these was ([-a-z\+,\.]+) rather than (.+) but then e-acute etc. fails
+		RewriteRule ^$baseUrl/([-a-z0-9]+)/artists/(.+)/$ $baseUrl/index.html?action=artist&gallery=$1&artist=$2 [L]
+		RewriteRule ^$baseUrl/([-a-z0-9]+)/artists/(.+)/page([1-9][0-9]*)\.html$ $baseUrl/index.html?action=artist&gallery=$1&artist=$2&page=$3 [L]
+		RewriteRule ^$baseUrl/([-a-z0-9]+)/categories/([a-z\+\s\(\),]+)/$ $baseUrl/index.html?action=category&gallery=$1&category=$2 [L]
+		RewriteRule ^$baseUrl/([-a-z0-9]+)/materials/([a-zAKE\+\-\s,>;\?\(\)]+)/$ $baseUrl/index.html?action=material&gallery=$1&material=$2 [L]
+		RewriteRule ^$baseUrl/([-a-z0-9]+)/(artists|categories|materials)/([^/]+)$ $baseUrl/$1/$2/$3/ [L,R]
+	
+</Macro>

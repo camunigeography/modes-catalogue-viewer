@@ -1,0 +1,113 @@
+/* MODES catalogue */
+#modescatalogue h1 span, #modescatalogue h1 span a {color: gray; white-space: nowrap;}
+#modescatalogue h1 a {border-bottom: 0;}
+#modescatalogue #gallerylisting {clear: right;}
+#modescatalogue #gallerylisting img {float: left; border: 0;}
+#modescatalogue div.gallery ul {margin-left: 0; padding-left: 0;}
+#modescatalogue div.gallery li {display: block; float: left; width: 110px; height: 110px; border: 1px solid #ddd; margin: 0 8px 8px 0; padding: 0;}
+#modescatalogue table.listing td.key img.portrait {width: 66px; height: 100px;}	/* Override landscape */
+
+#modescatalogue div.gallery li img, #modescatalogue table.listing td.key img {margin: 5px; width: 100px; height: 100px; background-position: center; border: 0; background-repeat: no-repeat;}
+#modescatalogue table.listing td.key img {margin: 0; /* height: 66px; */ background-position: top center;}
+#modescatalogue table.listing td.key img.portrait {height: 100px;}
+
+* html #modescatalogue div.gallery li {\width: 112px; w\idth: 110px; \height: 112px; h\eight: 110px;}
+* html #modescatalogue div.gallery li img {margin: 22px 5px;}	/* Assume landscape by default, to reduce HTML output */
+* html #modescatalogue div.gallery li img.portrait {margin: 5px 22px;}	/* Override landscape */
+#modescatalogue div.gallery li a {border: 0; display: block;}
+#modescatalogue div.gallery li:hover {position: relative; top: 2px; left: 2px; background-color: #f7f7f7;} /* Not supported by IE6 */
+#modescatalogue table.listing a img, #modescatalogue-category table.listing a img {border: 1px solid gray;}
+#modescatalogue table.listing span.recordnumber, #modescatalogue-category table.listing span.recordnumber, #modescatalogue table.listing span.gallerylink, #modescatalogue-category table.listing span.gallerylink {color: #bbb; font-style: italic; font-size: 0.83em;}
+#modescatalogue table.listing span.recordnumber, #modescatalogue table.listing span.gallerylink {white-space: nowrap;}
+#modescatalogue table.listing span.gallerylink {margin-left: 20px;}
+#modescatalogue table.listing span.gallerylink a {color: gray;}
+#modescatalogue table.listing h3 {margin: 0 1em 0 0; padding: 0; display: inline; font-size: 1.1em; font-weight: bold;}
+#modescatalogue table.listing p {margin-top: 0.4em;}
+#modescatalogue table.listing p.artist {font-style: italic; color: gray; margin-top: 0; font-size: 0.83em; margin-left: 2em;}
+#modescatalogue table.listing td.key {padding-right: 0.8em; text-align: right;}
+#modescatalogue table.listing td.key a {border: 0;}
+#modescatalogue tr#images img {float: left; margin: 0 6px 6px 0;}
+#modescatalogue table.article {width: 99%; clear: right;}
+/* Next one is old one */
+#modescatalogue table.article div.nullimage {height: 70px; width: 330px; padding: 15px 10px; border: 1px dashed #eee; text-align: center; font-style: italic;}
+#modescatalogue table.article a, #modescatalogue table.article a img {border: 0;}
+#modescatalogue table.article td.key {width: 143px;}
+#modescatalogue table.article td:first-child {width: 143px;}
+#modescatalogue table.listing div.nullimage, #modescatalogue div.gallery div.nullimage {display: block; padding: 5px; margin: 0 0 0 auto;}
+#modescatalogue table.listing div.nullimage {width: 64px; height: 88px; text-align: right; border: 1px dashed #ddd;}
+#modescatalogue div.gallery li img.nullimage, #modescatalogue table.listing img.nullimage.icon {width: 16px; height: 16px; border: 0; margin: 0;}	/* Not sure why this padding has to be respecified, as a normal image doesn't require it */
+#modescatalogue div.gallery li img.nullimage {padding: 20px 20px 74px 74px;}	/* Height: 20 + 16 + 72 = 110 */
+#modescatalogue table.listing img.nullimage {padding: 20px 20px 4.5em 80px;}	/* Worked out by experimentation */
+#modescatalogue table.listing a:hover {background-color: white;}
+#modescatalogue table ul {margin: 0; padding: 0;}
+#modescatalogue table ul li {list-style: none; margin: 0 0 4px;}
+#modescatalogue table ul.materials li {margin-bottom: 1px;}
+#modescatalogue table td table {margin: 0 0 1em; border-top: 0;}
+#modescatalogue table td table td.key {padding-left: 0;}
+#modescatalogue table.article td:first-child {color: #999; width: 9em;}
+#modescatalogue table table td.key {color: #777; width: 14em;}
+#modescatalogue ul.sectionmenu {margin-bottom: 1em;}
+#modescatalogue form.minisearch {float: right; position: relative; top: -3px; margin-left: 20px;}
+/* Remove */
+#modescatalogue ul.navigationmenu {clear: right; margin: 0; text-align: right; float: right; padding-top: 0; border-bottom: 1px solid #eee; padding-left: 0; padding-right: 0.8em; background-color: white;}
+#modescatalogue ul.navigationmenu li {display: inline; text-align: right; float: left; margin-left: 0.5em; width: 1.5em; padding-bottom: 1px;}
+#modescatalogue ul.navigationmenu li.root {margin-left: 0.8em; text-align: center; width: 14em;}
+#modescatalogue ul.navigationmenu a {border: 1px solid white; padding: 0.1em 0.5em;}
+#modescatalogue ul.navigationmenu a:hover {border: 1px solid #ddd;}
+#modescatalogue ul.navigationmenu li.root a {width: 13em; display: block;}
+#modescatalogue ul.paginationlinks {height: 3em; margin: 0; padding-top: 0; padding-left: 0; padding-right: 0.8em;}
+#modescatalogue #endpagination {clear: both; padding-top: 1.4em;}
+#modescatalogue ul.paginationlinks li {float: left; margin-left: 0.5em; width: 1.4em; padding-bottom: 1px; list-style: none;}
+#modescatalogue ul.paginationlinks li.introduction, #modescatalogue ul.paginationlinks li.root {width: auto;}
+#modescatalogue ul.paginationlinks li.introduction {margin-left: 0;}
+#modescatalogue ul.paginationlinks a, #modescatalogue ul.paginationlinks li span {border: 1px solid white; padding: 0.1em 0.5em;}
+#modescatalogue ul.paginationlinks a:hover {border: 1px solid #ddd;}
+#modescatalogue li form.minisearch {display: inline; margin-left: 2em; white-space: nowrap;}
+#modescatalogue li form.minisearch input {font-size: 0.83em;}
+#modescatalogue p.referer {display: inline; padding: 2px 5px;}
+#modescatalogue ul.sectionmenu + h2, #modescatalogue ul.paginationlinks + h2 {margin-top: 1.4em;}
+#modescatalogue table.materials td.key {color: #333;}
+#modescatalogue ul.tagcloud {margin: 0; padding: 0; padding: 15px; border: solid 1px #eee; background: #f7f7f7; text-align: center;}
+#modescatalogue ul.tagcloud li {padding: 10px 15px; display: inline; line-height: 1.4em;}
+#modescatalogue ul.tagcloud li a {white-space: nowrap;}
+#modescatalogue ul.tagcloud li.tagcloud1 {font-size: 75%;}
+#modescatalogue ul.tagcloud li.tagcloud2 {font-size: 90%;}
+#modescatalogue ul.tagcloud li.tagcloud3 {font-size: 130%;}
+#modescatalogue ul.tagcloud li.tagcloud4 {font-size: 150%;}
+#modescatalogue ul.tagcloud li.tagcloud5 {font-size: 190%;}
+#modescatalogue ul.tagcloud li span {font-size: 80%;}
+#modescatalogue p.classification {color: gray; border-top: 1px solid #eee; border-bottom: 1px solid #eee; padding: 3px 0;}
+#modescatalogue p.ahrc a {border: 0;}
+#modescatalogue ul.sectionmenu li img {border: 0; vertical-align: bottom;}
+/* #modescatalogue li.additional a {border-bottom-style: dashed;} */
+#modescatalogue p.colophon {clear: both; padding-top: 2em;}
+#modescatalogue div.galleryportal {min-height: 140px; height: 140px;}
+#modescatalogue div.galleryportal a.coverimage {display: block; width: 100px; height: 100px; float: left; border: 0;}
+#modescatalogue div.galleryportal a.coverimage img {}
+#modescatalogue div.galleryportal h2 {margin-bottom: 7px;}
+#modescatalogue #gallerylisting h2 span {font-size: 0.63em; color: gray; white-space: nowrap;}
+#modescatalogue div.galleryportal h2, div.galleryportal p {margin-left: 115px;}
+#modescatalogue div.galleryportal p {font-size: 0.85em; line-height: 1.5em; color: #444; margin-top: 0;}
+#modescatalogue table.article ul.actions {margin-top: 2em;}
+#modescatalogue table.article ul.actions li a {border-bottom: 0; border: 1px solid #ddd; padding: 4px 8px 2px; -moz-border-radius: 4px; width: 185px;}
+#modescatalogue div.gallerycontext {border: 1px solid #603; padding: 10px; background-color: #f6f6f6;}
+#modescatalogue div.gallerycontext p {margin: 0;}
+#modescatalogue ul.tabs li a {-moz-border-radius: 3px 3px 0 0; -webkit-border-radius: 3px 3px 0 0;}
+#modescatalogue ul.tabs li.main {margin-right: 8px;}
+#modescatalogue ul.browselinks {margin-bottom: 1.5em;}
+#modescatalogue p.apilink {float: right; display: block;}
+#modescatalogue p.apilink a {display: block; line-height: 16px; padding: 3px 5px; background-color: white; border: 1px solid #ccc;}
+#modescatalogue p.apilink a:hover {text-decoration: none;}
+#modescatalogue table.article table.compressed {margin-top: 0.5em; margin-bottom: 1em;}
+#modescatalogue table.article table.compressed td:first-child {padding-left: 0;}
+
+#modescatalogue #index a.coverimage {float: right; border: 0;}
+
+#modescatalogue #artists ul.artists {column-count: 3; -webkit-columns: 3; -moz-columns: 3;}
+
+/* Template editor */
+#modescatalogue #form_template {font-family: Lucida Console, courier, monospace; line-height: 1.35em; padding: 10px;}
+
+#modescatalogue table.cataloguemetadata {width: 100%;}
+#modescatalogue table.cataloguemetadata td:first-child {padding-left: 25px;}
+#modescatalogue table.cataloguemetadata td {padding-top: 6px; padding-bottom: 6px;}

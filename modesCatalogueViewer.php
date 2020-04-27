@@ -1618,11 +1618,9 @@ class modesCatalogueViewer extends frontControllerApplication
 		
 		# Assign the labels
 		$labels = array (
-			'start' => '&laquo;',
-			'previous' => '<strong>&lt;</strong>',
+			'previous' => '<img src="/images/icons/control_rewind_blue.png" class="icon" />',
 			'root' => $rootLabel,
-			'next' => '<strong>&gt;</strong>',
-			'end' => '&raquo;',
+			'next' => '<img src="/images/icons/control_fastforward_blue.png" class="icon" />',
 		);
 		
 		# Get and create the previous/next links, in the order above

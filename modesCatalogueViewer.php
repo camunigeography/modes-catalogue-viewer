@@ -204,9 +204,8 @@ class modesCatalogueViewer extends frontControllerApplication
 	public function home ()
 	{
 		# Get the gallery data
-		$fields = array ('id', 'title', 'abbreviation', 'count', 'baseUrl', 'introductoryTextBrief', 'collectionCoverImage');
+		$fields = array ('id', 'title', 'abbreviation', 'count', 'baseUrl', 'introductoryTextBrief', 'collectionCoverImage_src');
 		$collections = $this->getCollections ($fields);
-		
 		# Heading grouping name
 		$this->template['grouping'] = $this->grouping;
 		

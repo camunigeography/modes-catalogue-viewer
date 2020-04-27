@@ -4,7 +4,7 @@
 
 <div id="index">
 
-	<a class="coverimage" href="{$collection.baseUrl}/gallery/">{$collection.collectionCoverImage}</a>
+	<a class="coverimage" href="{$collection.baseUrl}/gallery/"><img src="{$collection.collectionCoverImage_src}" alt="Cover image" title="{$collection.title|htmlspecialchars}" width="100" height="100" class="shadow" /></a>
 
 	<h2>{$collection.title|htmlspecialchars}</h2>
 	

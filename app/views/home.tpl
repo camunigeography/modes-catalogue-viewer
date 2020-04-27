@@ -16,7 +16,7 @@
 	{foreach $collections.collections item=collection}
 		<tr>
 			<td>
-				<a class="coverimage" href="{$collection.baseUrl}/">{$collection.collectionCoverImage}</a>
+				<a class="coverimage" href="{$collection.baseUrl}/"><img src="{$collection.collectionCoverImage_src}" alt="Cover image" title="{$collection.title|htmlspecialchars}" width="100" height="100" class="shadow" /></a>
 			</td>
 			<td>
 				<h2><a href="{$collection.baseUrl}/">

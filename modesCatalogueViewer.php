@@ -266,13 +266,11 @@ class modesCatalogueViewer extends frontControllerApplication
 		$tabs = array (
 			'index' => array (
 				'subtab'	=> 'Home',
-				'icon'		=> 'house',
 				'url'		=> '/',
 			),
 			'about' => array (
 				'enableIf'	=> $gallery['aboutPageHtml'],
 				'subtab'	=> $gallery['aboutPageTabText'],
-				'icon'		=> 'information',
 				'url'		=> '/about.html',
 			),
 			'browse' => array (
@@ -328,7 +326,7 @@ class modesCatalogueViewer extends frontControllerApplication
 		$current = ($this->action == 'article' ? 'browse' : $this->action);
 		
 		# Compile the HTML
-		$html .= application::htmlUl ($list, 0, 'tabs', true, false, false, $liClass = true, $current);
+		$html .= application::htmlUl ($list, 0, 'tabsflat', true, false, false, $liClass = true, $current);
 		
 		# Return the HTML
 		return $html;

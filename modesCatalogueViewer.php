@@ -1689,9 +1689,9 @@ class modesCatalogueViewer extends frontControllerApplication
 		return $this->createImageHtml (
 			$this->gallery['imagesSubfolder'],
 			$filename,
-			$this->settings['mainImageSize'],						// $size
-			$this->settings['articleImageClass'],					// $class
-			/* $article['title'] . */ 'Image (c) ' . $this->settings['organisationName']	// $alt
+			$this->settings['mainImageSize'],						// size
+			$this->settings['articleImageClass'] . ' shadow',		// class
+			/* $article['title'] . */ 'Image (c) ' . $this->settings['organisationName']	// alt
 		);
 	}
 	

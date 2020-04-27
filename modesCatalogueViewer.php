@@ -34,7 +34,6 @@ class modesCatalogueViewer extends frontControllerApplication
 			
 			'administratorEmail' => NULL,
 			'multiplesDelimiter' => '|',
-			'error404page' => 'sitetech/404.html',
 			'queryTerm' => 'q',
 			'aatLink' => 'https://www.getty.edu/research/tools/vocabularies/aat/',
 			'removeEmptyGalleries' => true,	// Whether to remove authorised galleries that have no images in them

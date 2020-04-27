@@ -18,6 +18,7 @@ class modesCatalogueViewer extends frontControllerApplication
 			
 			# Tabs - only enabled for admins below
 			'disableTabs' => true,
+			'tabUlClass' => 'tabsflat',
 			
 			'organisationName' => NULL,
 			

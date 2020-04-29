@@ -801,7 +801,7 @@ class modesCatalogueViewer extends frontControllerApplication
 			}
 			
 			# Define the link
-			$link = '<a href="' . $this->articleIdToUrlSlug ($article['id'], $this->settings['isMuseumType'], true) . '">';
+			$link = '<a href="' . $this->articleIdToUrlSlug ($article['id'], $this->settings['isMuseumType'], $this->baseUrl, true) . '">';
 			
 			# Create the items
 			$thumbnail = $link . (
@@ -1442,7 +1442,7 @@ class modesCatalogueViewer extends frontControllerApplication
 	
 	# Function to convert an article ID to a URL slug
 	#!# Needs to be a pluggable callback
-	private function articleIdToUrlSlug ($string, $isMuseumType, $asFullUrl = false)
+	private function articleIdToUrlSlug ($string, $isMuseumType, $baseUrl, $asFullUrl = false)
 	{
 		# Lower-case
 		$string = strtolower ($string);
@@ -1452,7 +1452,7 @@ class modesCatalogueViewer extends frontControllerApplication
 		
 		# Convert to a full URL if necessary
 		if ($asFullUrl) {
-			$string = $this->baseUrl . '/article/' . $string . '/';
+			$string = $baseUrl . '/article/' . $string . '/';
 		}
 		
 		# Return the result
@@ -1461,6 +1461,7 @@ class modesCatalogueViewer extends frontControllerApplication
 	
 	
 	# Function to convert a URL slug to an article ID
+	#!# Needs to be a pluggable callback
 	private function urlSlugToArticleId ($string, $isMuseumType)
 	{
 		# Convert dot to slash
@@ -1601,7 +1602,7 @@ class modesCatalogueViewer extends frontControllerApplication
 	{
 		# Determine the URLs
 		foreach ($positions as $key => $value) {
-			$positions[$key . 'Href'] = ($positions[$key] ? $this->articleIdToUrlSlug ($value, $this->settings['isMuseumType'], true) : NULL);
+			$positions[$key . 'Href'] = ($positions[$key] ? $this->articleIdToUrlSlug ($value, $this->settings['isMuseumType'], $this->baseUrl, true) : NULL);
 		}
 		
 		# Determine the title for the root position
@@ -1699,7 +1700,7 @@ class modesCatalogueViewer extends frontControllerApplication
 	#!# Aim to get rid of this wrapper by adjusting the defaults for articleIdToUrlSlug
 	public function articleIdUrl ($articleId)
 	{
-		return $this->articleIdToUrlSlug ($articleId, $this->settings['isMuseumType'], true);
+		return $this->articleIdToUrlSlug ($articleId, $this->settings['isMuseumType'], $this->baseUrl, true);
 	}
 	
 	

@@ -872,7 +872,7 @@ class modesCatalogueViewer extends frontControllerApplication
 	private function getPhotographNumber ($data, $firstOnly = false)
 	{
 		# Find the images
-		$photographs = $data['images'];
+		$photographs = $data['imageFiles'];
 		
 		# If only the first is required, return that
 		if ($firstOnly) {
@@ -1654,7 +1654,7 @@ class modesCatalogueViewer extends frontControllerApplication
 		$html  = "\n<h3>Debugging info (shown only to administrators)</h3>";
 		
 		# Show the photograph number
-		$html .= "\n<p>Expected image: " . ($article['images'] ? $article['images'][0] : '<em class="comment">None</em>') . '</p>';
+		$html .= "\n<p>Expected image: " . ($article['imageFiles'] ? $article['imageFiles'][0] : '<em class="comment">None</em>') . '</p>';
 		
 		# Extract the XML
 		$xml = $article['xml'];

@@ -17,7 +17,7 @@
 
 <table class="lines article">
 	
-	{if $article.images}
+	{if $article.imageFiles}
 		<tr>
 			<td></td>
 			<td>
@@ -25,10 +25,10 @@
 					<div class="nullimage"><strong>No image available</strong> - please <a href="{$feedbackHref}">contact the curator</a> for information.</div>
 				{else}
 					{if $article.navigationIds.next}<a title="Go to next" href="{$article.navigationIds.next|articleIdUrl}">{/if}
-					{$article.images.0|imgTag}
+					{$article.imageFiles.0|imgTag}
 					{if $article.navigationIds.next}</a>{/if}
 					
-					{if $article.images|@count > 1}
+					{if $article.imageFiles|@count > 1}
 						<p><a href="#images">More (all) images of this article below <strong>&darr;</strong></a></p>
 					{/if}
 					
@@ -283,13 +283,13 @@
 		{/if}
 	{/if}
 	
-	{if $article.images}
+	{if $article.imageFiles}
 		{if $article.status != 'P'}
-			{if $article.images|@count > 1}
+			{if $article.imageFiles|@count > 1}
 				<tr id="images">
 					<td>All images for this article:</td>
 					<td>
-						{foreach from=$article.images item=image}
+						{foreach from=$article.imageFiles item=image}
 							{$image|imgTag}
 						{/foreach}
 					</td>

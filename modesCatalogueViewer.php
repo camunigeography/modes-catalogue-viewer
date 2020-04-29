@@ -1,6 +1,6 @@
 <?php
 
-# Class to craete a MODES catalogue viewer
+# Class to create a MODES catalogue viewer
 require_once ('frontControllerApplication.php');
 class modesCatalogueViewer extends frontControllerApplication
 {

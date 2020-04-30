@@ -202,7 +202,7 @@
 						{/foreach}
 					</li>
 				{/foreach}
-				<ul>
+				</ul>
 			</td>
 		</tr>
 	{/if}
@@ -215,7 +215,7 @@
 				{foreach from=$article.associatedPerson item=person}
 					<li><span class="comment">{$person.type|ucfirst}</span>: {$person.name|htmlspecialchars} ({$person.dateBegin} - {$person.dateEnd})</li>
 				{/foreach}
-				<ul>
+				</ul>
 			</td>
 		</tr>
 	{/if}
@@ -228,7 +228,7 @@
 				{foreach from=$article.associatedOrganisation item=organisation}
 					<li><span class="comment">{$organisation.type|ucfirst}</span>: {$organisation.name|htmlspecialchars} ({$organisation.dateBegin} - {$organisation.dateEnd})</li>
 				{/foreach}
-				<ul>
+				</ul>
 			</td>
 		</tr>
 	{/if}
@@ -241,7 +241,7 @@
 				{foreach from=$article.associatedExpedition item=expedition}
 					<li><span class="comment">{$expedition.type|ucfirst}</span>: {$expedition.name|htmlspecialchars} ({$expedition.dateBegin} - {$expedition.dateEnd})</li>
 				{/foreach}
-				<ul>
+				</ul>
 			</td>
 		</tr>
 	{/if}

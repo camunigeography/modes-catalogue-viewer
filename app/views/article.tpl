@@ -32,7 +32,7 @@
 						<p><a href="#images">More (all) images of this article below <strong>&darr;</strong></a></p>
 					{/if}
 					
-					{if !$isMuseumType}
+					{if $type == 'picturelibrary'}
 						<p><a href="/picturelibrary/ordering/"><img src="/images/icons/page_go.png" alt="Order" class="icon" border="0" /> <strong>How to order copies</strong> of this image (no. {$article.id})</a></p>
 					{/if}
 				{/if}
@@ -78,7 +78,7 @@
 		</tr>
 	{/if}
 	
-	{if $isMuseumType}
+	{if $type == 'museum'}
 		{if $article.classifiedNames}
 			<tr>
 				<td>Classified name:</td>
@@ -101,7 +101,7 @@
 		{/if}
 	{/if}
 	
-	{if $isMuseumType}
+	{if $type == 'museum'}
 		{if $article.fieldCollection}
 			<tr>
 				<td>Field collection:</td>
@@ -119,7 +119,7 @@
 		{/if}
 	{/if}
 	
-	{if $isMuseumType}
+	{if $type == 'museum'}
 		{if $article.materials}
 			<tr>
 				<td>Materials:</td>
@@ -134,7 +134,7 @@
 		{/if}
 	{/if}
 	
-	{if $isMuseumType}
+	{if $type == 'museum'}
 		{if $article.type != 'picture'}		{* Do not show for pictures, as they will only ever have one *}
 			{if $article.numberOfItems}
 				<tr>
@@ -145,7 +145,7 @@
 		{/if}
 	{/if}
 	
-	{if $isMuseumType}
+	{if $type == 'museum'}
 		{if $article.type eq 'picture'}
 			{if $article.note}
 				<tr>
@@ -156,7 +156,7 @@
 		{/if}
 	{/if}
 	
-	{if $isMuseumType}
+	{if $type == 'museum'}
 		{if $article.type != 'picture'}
 			<tr>
 				<td>Full description:</td>
@@ -171,7 +171,7 @@
 		{/if}
 	{/if}
 	
-	{if $isMuseumType}
+	{if $type == 'museum'}
 		{if $article.relatedRecords}
 			<tr>
 				<td>Related record(s):</td>
@@ -246,7 +246,7 @@
 		</tr>
 	{/if}
 	
-	{if !$isMuseumType}
+	{if $type == 'picturelibrary'}
 		{if $article.placeName}
 			<tr>
 				<td>Location:</td>
@@ -255,7 +255,7 @@
 		{/if}
 	{/if}
 	
-	{if !$isMuseumType}
+	{if $type == 'picturelibrary'}
 		{if $article.imageBy}
 			<tr>
 				<td>Image by:</td>
@@ -274,7 +274,7 @@
 		{/if}
 	{/if}
 	
-	{if !$isMuseumType}
+	{if $type == 'picturelibrary'}
 		{if $article.imageColour}
 			<tr>
 				<td>Colour or B&amp;W?:</td>

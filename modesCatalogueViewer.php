@@ -14,7 +14,8 @@ class modesCatalogueViewer extends frontControllerApplication
 			'div' => 'modescatalogue',
 			'administrators' => true,
 			
-			'isMuseumType' => false,
+			# Type, i.e. museum / picturelibrary
+			'type' => false,
 			
 			# Tabs - only enabled for admins below
 			'disableTabs' => true,
@@ -171,9 +172,6 @@ class modesCatalogueViewer extends frontControllerApplication
 	# Additional standard processing
 	public function main ()
 	{
-		# Assign globals
-		$this->grouping = ($this->settings['isMuseumType'] ? 'Museum' : 'Picture Library');
-		
 		# Register template modifier functions
 		$this->templateFunctions = array ('articleIdUrl', 'imgTag', 'makeCategoryLink', 'makeArtistLink', 'makeMaterialLink', );
 		
@@ -200,14 +198,27 @@ class modesCatalogueViewer extends frontControllerApplication
 	}
 	
 	
+	# Function to convert a type key to a name
+	private function typeToName ($type)
+	{
+		# Convert and return the type
+		$groupings = array (
+			'museum'			=> 'Museum',
+			'picturelibrary'	=> 'Picture Library',
+		);
+		return $groupings[$type];
+	}
+	
+	
 	# Function to create the front page
 	public function home ()
 	{
 		# Get the gallery data
 		$fields = array ('id', 'title', 'abbreviation', 'count', 'baseUrl', 'introductoryTextBrief', 'collectionCoverImage_src');
 		$collections = $this->getCollections ($fields);
+		
 		# Heading grouping name
-		$this->template['grouping'] = $this->grouping;
+		$this->template['grouping'] = $this->typeToName ($this->settings['type']);
 		
 		# Add the search box
 		$this->template['searchBox'] = $this->searchBox ($this->baseUrl, true, $global = true);
@@ -219,7 +230,7 @@ class modesCatalogueViewer extends frontControllerApplication
 		$this->template['collections'] = $collections;
 		
 		# Add the type to the template
-		$this->template['type'] = ($this->settings['isMuseumType'] ? 'items' : 'images');
+		$this->template['form'] = ($this->settings['type'] == 'picturelibrary' ? 'images' : 'items');
 		
 		# Footer
 		$this->template['footer'] = $this->settings['frontPageTextFooter'];
@@ -255,8 +266,7 @@ class modesCatalogueViewer extends frontControllerApplication
 		$html = '';
 		
 		# Add section heading
-		$type = ($this->settings['isMuseumType'] ? 'Museum' : 'Picture Library');
-		$html .= "\n<h1><a href=\"{$this->baseUrl}/\">" . $type . " catalogue</a>: <span><a href=\"{$gallery['baseUrl']}/\">" . htmlspecialchars ($gallery['title']) . '</a></span></h1>';
+		$html .= "\n<h1><a href=\"{$this->baseUrl}/\">" . $this->typeToName ($this->settings['type']) . " catalogue</a>: <span><a href=\"{$gallery['baseUrl']}/\">" . htmlspecialchars ($gallery['title']) . '</a></span></h1>';
 		
 		# Add the search box
 		$html .= $this->searchBox ($gallery['baseUrl'], true);
@@ -283,19 +293,19 @@ class modesCatalogueViewer extends frontControllerApplication
 				'url'		=> '/gallery/',
 			),
 			'artists' => array (
-				'enableIf'	=> ($this->settings['isMuseumType'] && !$gallery['disableArtists']),
+				'enableIf'	=> ($this->settings['type'] == 'museum' && !$gallery['disableArtists']),
 				'subtab'	=> 'Artists',
 				'icon'		=> 'paintbrush',
 				'url'		=> '/artists/',
 			),
 			'categories' => array (
-				'enableIf'	=> ($this->settings['isMuseumType'] && !$gallery['disableCategories']),
+				'enableIf'	=> ($this->settings['type'] == 'museum' && !$gallery['disableCategories']),
 				'subtab'	=> 'Categories',
 				'icon'		=> 'page_copy',
 				'url'		=> '/categories/',
 			),
 			'materials' => array (
-				'enableIf'	=> ($this->settings['isMuseumType'] && !$gallery['disableMaterials']),
+				'enableIf'	=> ($this->settings['type'] == 'museum' && !$gallery['disableMaterials']),
 				'subtab'	=> 'Materials',
 				'icon'		=> 'images',
 				'url'		=> '/materials/',
@@ -347,7 +357,8 @@ class modesCatalogueViewer extends frontControllerApplication
 		# Assign the collection data into the template
 		$this->template['collection'] = $this->gallery;
 		
-		$this->template['isMuseumType'] = $this->settings['isMuseumType'];
+		# Determine whether to show ordering details
+		$this->template['showOrderingDetails'] = ($this->settings['type'] == 'picturelibrary');
 		
 		#!# Move into model
 		$this->template['introductoryTextHtml'] = $this->applyPlaceholderReplacement ($this->gallery['introductoryText']);
@@ -674,7 +685,7 @@ class modesCatalogueViewer extends frontControllerApplication
 		}
 		
 		# Heading and form
-		$html  = "\n<h2>Search the " . ($global ? 'whole ' . ($this->settings['isMuseumType'] ? 'Museum ' : 'Picture Library ') : '') . "catalogue</h2>";
+		$html  = "\n<h2>Search the" . ($global ? ' whole ' . $this->typeToName ($this->settings['type']) : '') . ' catalogue</h2>';
 		$baseUrl = ($global ? $this->baseUrl : $this->gallery['baseUrl']);
 		$html .= $this->searchBox ($baseUrl, false, $global);
 		
@@ -801,7 +812,7 @@ class modesCatalogueViewer extends frontControllerApplication
 			}
 			
 			# Define the link
-			$link = '<a href="' . $this->articleIdToUrlSlug ($article['id'], $this->settings['isMuseumType'], $this->baseUrl, true) . '">';
+			$link = '<a href="' . $this->articleIdToUrlSlug ($article['id'], $this->settings['type'], $this->baseUrl, true) . '">';
 			
 			# Create the items
 			$thumbnail = $link . (
@@ -1359,7 +1370,9 @@ class modesCatalogueViewer extends frontControllerApplication
 	private function getCollections ($fields = array ())
 	{
 		# Obtain the record data from the API call
-		$apiUrl = $this->settings['apiUrl'] . "/collections?baseUrl={$this->baseUrl}&grouping=" . ($this->settings['isMuseumType'] ? 'museum,art' : 'picturelibrary') . ($fields ? '&fields=' . implode (',', $fields) : '');
+		$grouping = $this->settings['type'];
+		if ($this->settings['type'] == 'museum') {$grouping .= ',art';}
+		$apiUrl = $this->settings['apiUrl'] . "/collections?baseUrl={$this->baseUrl}&grouping=" . $grouping . ($fields ? '&fields=' . implode (',', $fields) : '');
 		$json = file_get_contents ($apiUrl);
 		$collections = json_decode ($json, true);
 		
@@ -1442,7 +1455,7 @@ class modesCatalogueViewer extends frontControllerApplication
 	
 	# Function to convert an article ID to a URL slug
 	#!# Needs to be a pluggable callback
-	private function articleIdToUrlSlug ($string, $isMuseumType, $baseUrl, $asFullUrl = false)
+	private function articleIdToUrlSlug ($string, $type, $baseUrl, $asFullUrl = false)
 	{
 		# Lower-case
 		$string = strtolower ($string);
@@ -1462,7 +1475,7 @@ class modesCatalogueViewer extends frontControllerApplication
 	
 	# Function to convert a URL slug to an article ID
 	#!# Needs to be a pluggable callback
-	private function urlSlugToArticleId ($string, $isMuseumType)
+	private function urlSlugToArticleId ($string, $type)
 	{
 		# Convert dot to slash
 		$string = str_replace ('.', '/', $string);
@@ -1485,7 +1498,7 @@ class modesCatalogueViewer extends frontControllerApplication
 		}
 		
 		# Obtain and convert the article number
-		$id = $this->urlSlugToArticleId ($_GET['article'], $this->settings['isMuseumType']);
+		$id = $this->urlSlugToArticleId ($_GET['article'], $this->settings['type']);
 		
 		# Obtain the record data from the API call
 		$apiUrl = $this->settings['apiUrl'] . '/article?id=' . urlencode ($id) . '&collection=?' . ($this->userIsAdministrator ? '&includeXml=1' : '');
@@ -1555,7 +1568,7 @@ class modesCatalogueViewer extends frontControllerApplication
 		$this->template['feedbackHref'] = $this->baseUrl . '/feedback.html';
 		
 		# Add a flag for whether the record is a museum type
-		$this->template['isMuseumType'] = $this->settings['isMuseumType'];
+		$this->template['type'] = $this->settings['type'];
 		
 		#!# Consider adding support for showing the internal location for internal users, which used to be PERMANENT-LOCATION
 		
@@ -1602,7 +1615,7 @@ class modesCatalogueViewer extends frontControllerApplication
 	{
 		# Determine the URLs
 		foreach ($positions as $key => $value) {
-			$positions[$key . 'Href'] = ($positions[$key] ? $this->articleIdToUrlSlug ($value, $this->settings['isMuseumType'], $this->baseUrl, true) : NULL);
+			$positions[$key . 'Href'] = ($positions[$key] ? $this->articleIdToUrlSlug ($value, $this->settings['type'], $this->baseUrl, true) : NULL);
 		}
 		
 		# Determine the title for the root position
@@ -1700,7 +1713,7 @@ class modesCatalogueViewer extends frontControllerApplication
 	#!# Aim to get rid of this wrapper by adjusting the defaults for articleIdToUrlSlug
 	public function articleIdUrl ($articleId)
 	{
-		return $this->articleIdToUrlSlug ($articleId, $this->settings['isMuseumType'], $this->baseUrl, true);
+		return $this->articleIdToUrlSlug ($articleId, $this->settings['type'], $this->baseUrl, true);
 	}
 	
 	

@@ -8,7 +8,7 @@
 {$frontPageTextIntroduction}
 
 
-<p>There are {$collections.summary.totalCollections} collections currently available, covering some {$collections.summary.totalRecords|number_format} {$type}:</p>
+<p>There are {$collections.summary.totalCollections} collections currently available, covering some {$collections.summary.totalRecords|number_format} {$form}:</p>
 
 <div id="gallerylisting">
 	

@@ -14,7 +14,7 @@ class modesCatalogueViewer extends frontControllerApplication
 			'div' => 'modescatalogue',
 			'administrators' => true,
 			
-			# Type, i.e. museum / picturelibrary
+			# Type, i.e. museum / picturelibrary / archives
 			'type' => false,
 			
 			# Tabs - only enabled for admins below
@@ -205,6 +205,7 @@ class modesCatalogueViewer extends frontControllerApplication
 		$groupings = array (
 			'museum'			=> 'Museum',
 			'picturelibrary'	=> 'Picture Library',
+			'archives'			=> 'Archives',
 		);
 		return $groupings[$type];
 	}

@@ -165,6 +165,8 @@ class modesCatalogueViewer extends frontControllerApplication
 			$this->settings['disableTabs'] = false;
 		}
 		
+		# Register template modifier functions
+		$this->templateFunctions = array ('articleIdUrl', 'imgTag', 'makeCategoryLink', 'makeArtistLink', 'makeMaterialLink', );
 	}
 	
 	
@@ -172,9 +174,6 @@ class modesCatalogueViewer extends frontControllerApplication
 	# Additional standard processing
 	public function main ()
 	{
-		# Register template modifier functions
-		$this->templateFunctions = array ('articleIdUrl', 'imgTag', 'makeCategoryLink', 'makeArtistLink', 'makeMaterialLink', );
-		
 		# Title
 		$this->titleBrowser = array ();
 		$this->titleBreadcrumbTrail = array ();

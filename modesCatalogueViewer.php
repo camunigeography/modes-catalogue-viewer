@@ -214,7 +214,7 @@ class modesCatalogueViewer extends frontControllerApplication
 	public function home ()
 	{
 		# Get the gallery data
-		$fields = array ('id', 'title', 'abbreviation', 'count', 'baseUrl', 'introductoryTextBrief', 'collectionCoverImage_src');
+		$fields = array ('id', 'title', 'abbreviation', 'count', 'baseUrl', 'introductoryTextBrief', 'coverImage');
 		$collections = $this->getCollections ($fields);
 		
 		# Heading grouping name
@@ -229,8 +229,8 @@ class modesCatalogueViewer extends frontControllerApplication
 		# Add gallery data to the template
 		$this->template['collections'] = $collections;
 		
-		# Add the type to the template
-		$this->template['form'] = ($this->settings['type'] == 'picturelibrary' ? 'images' : 'items');
+		# Add the type to the template, e.g. museum/picturelibrary
+		$this->template['type'] = $this->settings['type'];
 		
 		# Footer
 		$this->template['footer'] = $this->settings['frontPageTextFooter'];

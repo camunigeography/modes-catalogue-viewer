@@ -107,3 +107,13 @@
 #modescatalogue table.cataloguemetadata {width: 100%;}
 #modescatalogue table.cataloguemetadata td:first-child {padding-left: 25px;}
 #modescatalogue table.cataloguemetadata td {padding-top: 6px; padding-bottom: 6px;}
+
+/* Collections list page */
+.flexrow {display: flex; flex-direction: row;}
+#modescatalogue .collectionslist > div:first-child {width: 75%;}
+#modescatalogue .collectionslist > div:last-child {width: 25%; border-left: 1px solid #eee; padding-left: 20px;}
+#modescatalogue .collectionslist ul {margin: 30px 0; padding: 0; list-style: none;}
+#modescatalogue .collectionslist ul li {position: relative; display: inline; float: left; margin: 0 24px 24px 0; box-shadow: 5px 5px 10px 0px #999; opacity: 0.8; width: 180px; height: 180px; background-color: #ccc;}
+#modescatalogue .collectionslist ul li:hover {opacity: 1;}
+#modescatalogue .collectionslist ul li img {width: 180px; height: 180px;}
+#modescatalogue .collectionslist ul li p {position: absolute; display: block; bottom: 0; left: 10px; right: 10px; font-weight: bold; color: #fff; text-shadow: 3px 3px 8px black;}

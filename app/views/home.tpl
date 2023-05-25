@@ -1,39 +1,31 @@
-{* Template for home page listing of collections *}
+﻿{* Template for home page listing of collections *}
 
 
 <h1>{$grouping} catalogue</h1>
 
 {$searchBox}
 
+<br />
+
 {$frontPageTextIntroduction}
 
+<p>There are {$collections.summary.totalCollections} collections currently available online, covering some {$collections.summary.totalRecords|number_format} {($type == 'picturelibrary') ? 'images' : 'items'}:</p>
 
-<p>There are {$collections.summary.totalCollections} collections currently available, covering some {$collections.summary.totalRecords|number_format} {$form}:</p>
-
-<div id="gallerylisting">
-	
-	<table class="graybox">
-	{foreach $collections.collections item=collection}
-		<tr>
-			<td>
-				<a class="coverimage" href="{$collection.baseUrl}/"><img src="{$collection.collectionCoverImage_src}" alt="Cover image" title="{$collection.title|htmlspecialchars}" width="100" height="100" class="shadow" /></a>
-			</td>
-			<td>
-				<h2><a href="{$collection.baseUrl}/">
-					{$collection.title|htmlspecialchars}</a>&nbsp;
-					<span>({$collection.count|number_format} {($collection.count eq 1) ? 'item' : 'items'})</span>
-				</h2>
-				
-				{if $collection.introductoryTextBrief}
-					<p>{$collection.introductoryTextBrief|htmlspecialchars}</p>
-				{else}
-					<span class="comment">Sorry, no summary of this catalogue is available yet.</span>
-				{/if}
-			</td>
-		</tr>
-	{/foreach}
-	</table>
-	
+<div class="collectionslist flexrow">
+	<div>
+		<ul class="clearfix">
+		{foreach $collections.collections item=collection}
+			<li><a class="coverimage" href="{$collection.baseUrl}/">
+				<div title="{$collection.introductoryTextBrief|htmlspecialchars}">
+					<img src="{$collection.coverImage}" />
+					<p class="coverimage">{$collection.title|htmlspecialchars}</p>
+				</div>
+			</a></li>
+		{/foreach}
+		</ul>
+	</div>
+	<div>
+	</div>
 </div>
 
 
@@ -41,4 +33,4 @@
 
 
 <h2>Your views</h2>
-<p>We would welcome your <a href="{$feedbackHref}">feedback</a> on the catalogue and its contents.</p>
+<p>We welcome your <a href="{$feedbackHref}">feedback</a> on the catalogue and its contents.</p>

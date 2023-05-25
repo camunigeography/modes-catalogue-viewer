@@ -17,7 +17,19 @@
 		
 		{$paginationHtml}
 		
-		{$articles}
+		<table class="lines listing spaced">
+		{foreach from=$data.articles item=article}
+			<tr>
+				<td class="key">
+					<a href="{$baseUrl}/article{$article.link}"><img{if ($article.images.0.height > $article.images.0.width)} class="portrait"{/if} src="/images/general/item.gif" width="{$article.images.0.width}" height="{$article.images.0.height}" style="background-image: url('{$article.images.0.path}');" alt="Image" title="{$article.title|htmlspecialchars}" /></a>
+				</td>
+				<td>
+					<h3><a href="{$baseUrl}/article{$article.link}">{$article.title|htmlspecialchars}</a></h3> <span class="recordnumber">Record: {$article.id}</span>
+					<p>{$article.briefDescription|htmlspecialchars}</p>
+				</td>
+			</tr>
+		{/foreach}
+		</table>
 		
 		<div id="endpagination">
 			{$paginationHtml}

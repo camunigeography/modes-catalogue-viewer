@@ -459,11 +459,12 @@ class modesCatalogueViewer extends frontControllerApplication
 		}
 		
 		# Obtain the data for this gallery
-		$constraints = array (
+		$parameters = array (
 			'collection' => $this->gallery['id'],
 			'page' => (isSet ($_GET['page']) && ctype_digit ($_GET['page']) ? $_GET['page'] : NULL),
+			'imagesize' => '100',
 		);
-		$data = $this->getArticles ($constraints);
+		$data = $this->getArticles ($parameters);
 		
 		# End if error
 		if (isSet ($data['error'])) {
@@ -477,6 +478,9 @@ class modesCatalogueViewer extends frontControllerApplication
 		# Assign the gallery data into the template
 		$this->template['collection'] = $this->gallery;
 		
+		# Base URL
+		$this->template['baseUrl'] = $this->baseUrl;
+		
 		# Assign the data into the template
 		$this->template['data'] = $data;
 		
@@ -489,9 +493,6 @@ class modesCatalogueViewer extends frontControllerApplication
 		# Add pagination links
 		require_once ('pagination.php');
 		$this->template['paginationHtml'] = pagination::paginationLinks ($data['pagination']['page'], $data['pagination']['totalPages'], $this->gallery['baseUrl'] . "/{$this->action}/");
-		
-		# Create the HTML
-		$this->template['articles'] = $this->galleryHtmlFromArticleData ($data['articles']);
 		
 		# Process the template
 		$html = $this->templatise ();

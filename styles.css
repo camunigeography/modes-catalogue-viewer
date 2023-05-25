@@ -117,3 +117,7 @@
 #modescatalogue .collectionslist ul li:hover {opacity: 1;}
 #modescatalogue .collectionslist ul li img {width: 180px; height: 180px;}
 #modescatalogue .collectionslist ul li p {position: absolute; display: block; bottom: 0; left: 10px; right: 10px; font-weight: bold; color: #fff; text-shadow: 3px 3px 8px black;}
+
+/* Article page */
+#modescatalogue .article .imagecontainer {background-color: #f9f9f9; padding: 25px 20px 40px 25px; background-image: linear-gradient(#f3f3f3, #fff);}
+#modescatalogue .article h3 {padding: 20px 25px 10px; background-image: linear-gradient(to right, #9cf, #fff); margin-bottom: 20px;}

@@ -1499,9 +1499,10 @@ class modesCatalogueViewer extends frontControllerApplication
 		$id = $this->urlSlugToArticleId ($_GET['article'], $this->settings['type']);
 		
 		# Obtain the record data from the API call
-		$apiUrl = $this->settings['apiUrl'] . '/article?id=' . urlencode ($id) . '&collection=?' . ($this->userIsAdministrator ? '&includeXml=1' : '');
+		$apiUrl = $this->settings['apiUrl'] . '/article?id=' . urlencode ($id) . '&collection=?' . '&imagesize=450' . ($this->userIsAdministrator ? '&includeXml=1' : '');
 		$json = file_get_contents ($apiUrl);
 		$article = json_decode ($json, true);
+		//application::dumpData ($article);
 		if (isSet ($article['error'])) {
 			$this->page404 ();
 			return false;
@@ -1562,8 +1563,9 @@ class modesCatalogueViewer extends frontControllerApplication
 		# Assign the article into the template
 		$this->template['article'] = $article;
 		
-		# Add general links into the template
+		# Other general fields
 		$this->template['feedbackHref'] = $this->baseUrl . '/feedback.html';
+		$this->template['organisationName'] = $this->settings['organisationName'];
 		
 		# Add a flag for whether the record is a museum type
 		$this->template['type'] = $this->settings['type'];
@@ -1649,7 +1651,8 @@ class modesCatalogueViewer extends frontControllerApplication
 		}
 		
 		# Compile the HTML
-		$html = application::htmlUl ($list, 0, 'navigationmenu', true, false, false, $liClass = true);
+		#!# Needs to be better formatted
+		$html = '<p>' . implode ('&nbsp;&nbsp;', $list) . '</p>';
 		
 		# Return the HTML
 		return $html;

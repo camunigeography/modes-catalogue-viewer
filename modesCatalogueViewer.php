@@ -1,7 +1,6 @@
 <?php
 
 # Class to create a MODES catalogue viewer
-require_once ('frontControllerApplication.php');
 class modesCatalogueViewer extends frontControllerApplication
 {
 	# Function to assign defaults additional to the general application defaults
@@ -412,7 +411,6 @@ class modesCatalogueViewer extends frontControllerApplication
 		$html .= "\n<p>We welcome your feedback on the catalogue and its contents.</p>";
 		
 		# Load and instantiate the form library
-		require_once ('ultimateForm.php');
 		$form = new form (array (
 			'antispam'	=> true,
 		));
@@ -488,7 +486,6 @@ class modesCatalogueViewer extends frontControllerApplication
 		}
 		
 		# Add pagination links
-		require_once ('pagination.php');
 		$this->template['paginationHtml'] = pagination::paginationLinks ($data['pagination']['page'], $data['pagination']['totalPages'], $this->gallery['baseUrl'] . "/{$this->action}/");
 		
 		# Process the template
@@ -544,7 +541,6 @@ class modesCatalogueViewer extends frontControllerApplication
 			return false;
 		}
 		
-		require_once ('pagination.php');
 		$paginationHtml = pagination::paginationLinks ($data['pagination']['page'], $data['pagination']['totalPages'], $this->gallery['baseUrl'] . "/{$this->action}/");
 		
 		# Determine the introduction
@@ -615,7 +611,6 @@ class modesCatalogueViewer extends frontControllerApplication
 			$html .= "\n<h3>Contact form</h3>";
 			
 			# Add the form
-			require_once ('ultimateForm.php');
 			$form = new form (array (
 				'displayRestrictions' => false,
 			));
@@ -718,7 +713,6 @@ class modesCatalogueViewer extends frontControllerApplication
 			# Determine the query string
 			$queryString = "{$this->settings['queryTerm']}=" . urlencode ($_GET[$this->settings['queryTerm']]);
 			
-			require_once ('pagination.php');
 			$paginationHtml = pagination::paginationLinks ($data['pagination']['page'], $data['pagination']['totalPages'], $baseLink, $queryString);
 			
 			$html .= "\n<p>There " . ($data['pagination']['total'] == 1 ? 'is one item' : 'are ' . number_format ($data['pagination']['total']) . ' items')
@@ -1078,7 +1072,6 @@ class modesCatalogueViewer extends frontControllerApplication
 			return false;
 		}
 		
-		require_once ('pagination.php');
 		$paginationHtml = pagination::paginationLinks ($data['pagination']['page'], $data['pagination']['totalPages'], $this->gallery['baseUrl'] . "/{$this->action}/");
 		
 		# Determine the introduction
@@ -1193,7 +1186,6 @@ class modesCatalogueViewer extends frontControllerApplication
 			return false;
 		}
 		
-		require_once ('pagination.php');
 		$paginationHtml = pagination::paginationLinks ($data['pagination']['page'], $data['pagination']['totalPages'], $this->gallery['baseUrl'] . "/{$this->action}/");
 		
 		# Determine the introduction
@@ -1323,7 +1315,6 @@ class modesCatalogueViewer extends frontControllerApplication
 			return false;
 		}
 		
-		require_once ('pagination.php');
 		$paginationHtml = pagination::paginationLinks ($data['pagination']['page'], $data['pagination']['totalPages'], $this->gallery['baseUrl'] . '/artists/' . str_replace (' ', '+', htmlspecialchars ($artist)) . '/');
 		
 		
@@ -1685,7 +1676,6 @@ class modesCatalogueViewer extends frontControllerApplication
 		$html .= "\n</div>";
 		
 		# Show the XML in a box
-		require_once ('xml.php');
 		$html .= xml::formatter ($xml);
 		
 		# Return the HTML
@@ -1868,7 +1858,6 @@ class modesCatalogueViewer extends frontControllerApplication
 			
 			# Obtain the image height and width when scaled
 			list ($width, $height, $imageType, $imageAttributes) = getimagesize ($location);
-			require_once ('image.php');
 			list ($width, $height) = image::scaledImageDimensions ($width, $height, $size);
 			
 			# Determine whether to include the watermark if not in tiny-thumbnail mode

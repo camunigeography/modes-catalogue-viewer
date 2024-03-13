@@ -2,14 +2,13 @@
 
 # Define the settings
 $settings = array (
-	'hostname' => 'localhost',
 	'username' => 'my_username',
 	'password' => 'my_password',
 	'organisationName' => 'Widgets Institute',
 );
 
 # Load and run the MODES catalogue viewer class
-require_once ('modesCatalogueViewer.php');
+require_once ('vendor/autoload.php');
 new modesCatalogueViewer ($settings);
 
 ?>

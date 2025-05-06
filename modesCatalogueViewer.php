@@ -356,6 +356,9 @@ class modesCatalogueViewer extends frontControllerApplication
 		# Assign the collection data into the template
 		$this->template['collection'] = $this->gallery;
 		
+		# Set the grouping, e.g. 'picturelibrary'
+		$this->template['type'] = $this->gallery['grouping'];
+		
 		#!# Move into model
 		$this->template['introductoryTextHtml'] = $this->applyPlaceholderReplacement ($this->gallery['introductoryText']);
 		

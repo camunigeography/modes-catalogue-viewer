@@ -21,7 +21,7 @@
 		{foreach from=$data.articles item=article}
 			<tr>
 				<td class="key">
-					<a href="{$baseUrl}/article{$article.link}"><img{if ($article.images.0.height > $article.images.0.width)} class="portrait"{/if} src="/images/general/item.gif" width="{$article.images.0.width}" height="{$article.images.0.height}" style="background-image: url('{$article.images.0.path}');" alt="Image" title="{$article.title|htmlspecialchars}" /></a>
+					<a href="{$baseUrl}/article{$article.link}"><img src="/images/general/item.gif"{if ($article.images)} style="background-image: url('{$article.images.0.path}');"{if ($article.images.0.height > $article.images.0.width)} class="portrait"{/if} width="{$article.images.0.width}" height="{$article.images.0.height}" alt="Image" title="{$article.title|htmlspecialchars}"{/if} /></a>
 				</td>
 				<td>
 					<h3><a href="{$baseUrl}/article{$article.link}">{$article.title|htmlspecialchars}</a></h3> <span class="recordnumber">Record: {$article.id}</span>

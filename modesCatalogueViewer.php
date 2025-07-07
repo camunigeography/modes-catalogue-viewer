@@ -509,17 +509,11 @@ class modesCatalogueViewer extends frontControllerApplication
 			return false;
 		}
 		
-		# Start the HTML
-		$html = '';
-		
 		# Page header
-		$html .= $this->pageHeader ($this->gallery);
+		$this->template['pageHeader'] = $this->pageHeader ($this->gallery);
 		
-		$html .= "\n<h2>Gallery of all items</h2>";
-		
-		$fullTitle = htmlspecialchars ($this->gallery['title']) . ($this->gallery['abbreviation'] ? ' (' . htmlspecialchars ($this->gallery['abbreviation']) . ')' : '');
-		$html .= "\n<p>Here you can browse the gallery of all the <a href=\"{$this->gallery['baseUrl']}/\"><strong>{$fullTitle}</strong></a> items.</p>";
-		$html .= "\n<p>You can also <a href=\"{$this->gallery['baseUrl']}/browse/\"><img src=\"/images/icons/layout_content.png\" alt=\"\" class=\"icon\"> show descriptions for each item</a>.</p>";
+		# Send gallery information to template
+		$this->template['gallery'] = $this->gallery;
 		
 		# Obtain the data for this gallery
 		$constraints = array (
@@ -535,28 +529,20 @@ class modesCatalogueViewer extends frontControllerApplication
 			return false;
 		}
 		
-		# End if no data
-		#!# Inform admin
-		if (!$data['articles']) {
-			application::sendHeader ('404');
-			$html = "\n<p>No items were found.</p>";
-			echo $html;
-			return false;
-		}
+		#!# Need to inform admin if no $data['articles']
 		
-		$paginationHtml = pagination::paginationLinks ($data['pagination']['page'], $data['pagination']['totalPages'], $this->gallery['baseUrl'] . "/{$this->action}/");
+		# Send gallery data to template
+		$this->template['data'] = $data;
 		
-		# Determine the introduction
-		#!# Count shows number of items, not total with images
-		$html .= "\n<p>There " . ($data['pagination']['total'] == 1 ? 'is one item' : 'are ' . number_format ($data['pagination']['total']) . ' items')
-			. ($this->gallery['count'] == 1 ? ' which has an image' : ' which have images')
-			. ' in this collection' . ($paginationHtml ? ', of which ' . ($data['pagination']['count'] == 1 ? 'one is shown' : "{$data['pagination']['count']} are shown") . ' below. Use the navigation to view more pages' : '')
-			. '.</p>';
+		# Add pagination links
+		$this->template['paginationHtml'] = pagination::paginationLinks ($data['pagination']['page'], $data['pagination']['totalPages'], $this->gallery['baseUrl'] . "/{$this->action}/");
 		
-		# Create the HTML, surrounded by pagination controls
-		$html .= $paginationHtml;
-		$html .= $this->galleryHtmlFromArticleData ($data['articles'], true);
-		if ($paginationHtml) {$html .= "\n<div id=\"endpagination\">{$paginationHtml}</div>";}
+		# Pass the gallery HTML to the template
+		#!# Needs full templatisation
+		$this->template['galleryHtml'] = $this->galleryHtmlFromArticleData ($data['articles'], true);
+		
+		# Process the template
+		$html = $this->templatise ();
 		
 		# Show the listing HTML
 		echo $html;

@@ -14,7 +14,7 @@
 	</ul>
 	
 	{if $type == 'picturelibrary'}
-		<p><a href="/picturelibrary/ordering/"><img src="/images/icons/page_go.png" alt="Order" class="icon" border="0" /> <strong>How to order copies</strong> of these images</a> for: <a href="/picturelibrary/ordering/commercial.html">commercial use</a> or <a href="/picturelibrary/ordering/private.html">private use</a>.</p>
+		<p><a href="/picturelibrary/ordering/"><img src="/images/icons/page_go.png" alt="Order" class="icon" border="0" /> <strong>How to order copies</strong> of these images</a> for: <a href="/picturelibrary/ordering/commercial/">commercial use</a> or <a href="/picturelibrary/ordering/private/">private use</a>.</p>
 	{/if}
 	
 	{$introductoryTextHtml}

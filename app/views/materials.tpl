@@ -6,7 +6,7 @@
 
 <h2>Materials</h2>
 
-{if isSet($notFound)}
+{if isset($notFound)}
 	<p>No materials were found.</p>
 {else}
 

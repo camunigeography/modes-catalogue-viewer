@@ -4,7 +4,7 @@
 
 <h2>Gallery of all items</h2>
 
-<p>Here you can browse the gallery of all the <a href="{$gallery.baseUrl}/"><strong>{$gallery.title|htmlspecialchars}{if ($gallery.abbreviation)} ({$gallery.abbreviation|htmlspecialchars}){/if}</strong></a> items.</p>
+<p>Here you can browse the gallery of all the <a href="{$gallery.baseUrl}/"><strong>{$gallery.title|escape}{if ($gallery.abbreviation)} ({$gallery.abbreviation|escape}){/if}</strong></a> items.</p>
 <p>You can also <a href="{$gallery['baseUrl']}/browse/"><img src="/images/icons/layout_content.png" alt="" class="icon"> show descriptions for each item</a>.</p>
 
 {if (!$data.articles)}

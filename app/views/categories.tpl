@@ -6,7 +6,7 @@
 
 <h2>Categories</h2>
 
-{if isSet($notFound)}
+{if isset($notFound)}
 	<p>No categories were found.</p>
 {else}
 
@@ -20,7 +20,7 @@
 			<td><span class="comment">({$category.count}&nbsp;{($category.count eq 1) ? 'item' : 'items'})</span></td>
 			<td>
 				{if $category.classification}
-					{$category.classification|htmlspecialchars|replace:' &amp; ':' <span class="comment">&raquo;</span> '}
+					{$category.classification|escape|replace:' &amp; ':' <span class="comment">&raquo;</span> '}
 				{else}
 					<span class="comment"><em>[Classification available shortly.]</em></span>
 				{/if}

@@ -6,7 +6,7 @@
 
 <h2>Browse / drill-down AAT category hierarchy</h2>
 
-{if isSet($notFound)}
+{if isset($notFound)}
 	<p>No categories were found.</p>
 {else}
 

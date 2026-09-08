@@ -1,4 +1,4 @@
-﻿{* Template for home page listing of collections *}
+{* Template for home page listing of collections *}
 
 
 <h1>{$grouping} catalogue</h1>
@@ -16,9 +16,9 @@
 		<ul class="clearfix">
 		{foreach $collections.collections item=collection}
 			<li><a class="coverimage" href="{$collection.baseUrl}/">
-				<div title="{$collection.introductoryTextBrief|htmlspecialchars}">
+				<div title="{$collection.introductoryTextBrief|escape}">
 					<img src="{$collection.coverImage}" />
-					<p class="coverimage">{$collection.title|htmlspecialchars}</p>
+					<p class="coverimage">{$collection.title|escape}</p>
 				</div>
 			</a></li>
 		{/foreach}

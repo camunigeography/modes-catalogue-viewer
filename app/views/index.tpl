@@ -4,9 +4,9 @@
 
 <div id="index">
 	
-	<a class="coverimage" href="{$collection.baseUrl}/gallery/"><img src="{$collection.collectionCoverImage_src}" alt="Cover image" title="{$collection.title|htmlspecialchars}" width="100" height="100" class="shadow" /></a>
+	<a class="coverimage" href="{$collection.baseUrl}/gallery/"><img src="{$collection.collectionCoverImage_src}" alt="Cover image" title="{$collection.title|escape}" width="100" height="100" class="shadow" /></a>
 	
-	<h2>{$collection.title|htmlspecialchars}</h2>
+	<h2>{$collection.title|escape}</h2>
 	
 	<ul class="browselinks nobullet">
 		<li><a href="{$collection.baseUrl}/browse/"><img src="/images/icons/layout_content.png" alt="" class="icon" /> <strong>Browse all items</strong> ({$collection.count|number_format} available)</a></li>

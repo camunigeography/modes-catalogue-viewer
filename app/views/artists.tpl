@@ -6,7 +6,7 @@
 
 <h2>Artists</h2>
 
-{if isSet($notFound)}
+{if isset($notFound)}
 	<p>No artists were found.</p>
 {else}
 

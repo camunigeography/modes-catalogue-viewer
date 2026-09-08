@@ -3,7 +3,7 @@
 {$pageHeader}
 
 
-<h2>{$article.title|htmlspecialchars}</h2>
+<h2>{$article.title|escape}</h2>
 
 
 <div class="campl-wp-content article">
@@ -16,7 +16,7 @@
 				<div class="nullimage"><strong>No image available</strong> - please <a href="{$feedbackHref}">contact the curator</a> for information.</div>
 			{else}
 				{if $article.navigationIds.next}<a title="Go to next" href="{$article.navigationIds.next|articleIdUrl}">{/if}
-				<img class="shadow" width="{$article.images.0.width}" height="{$article.images.0.height}" src="/images/general/item.gif" style="background-image: url('{$article.images.0.path}');" alt="Image" title="Image (c) {$organisationName|htmlspecialchars}" />
+				<img class="shadow" width="{$article.images.0.width}" height="{$article.images.0.height}" src="/images/general/item.gif" style="background-image: url('{$article.images.0.path}');" alt="Image" title="Image (c) {$organisationName|escape}" />
 				{if $article.navigationIds.next}</a>{/if}
 				
 				{if $article.images|@count > 1}
@@ -40,26 +40,26 @@
 		{if $article.objectName}
 			<tr>
 				<td>Object name:</td>
-				<td>{$article.objectName|htmlspecialchars|ucfirst}</td>
+				<td>{$article.objectName|escape}</td>
 			</tr>
 		{/if}
 		
 		<tr>
 			<td>Title:</td>
-			<td>{$article.title|htmlspecialchars}</td>
+			<td>{$article.title|escape}</td>
 		</tr>
 		
 		{if $article.briefDescription}
 			<tr>
 				<td>Description:</td>
-				<td>{$article.briefDescription|htmlspecialchars}</td>
+				<td>{$article.briefDescription|escape}</td>
 			</tr>
 		{/if}
 		
 		{if $article.medium}
 			<tr>
 				<td>Medium:</td>
-				<td>{$article.medium|htmlspecialchars}</td>
+				<td>{$article.medium|escape}</td>
 			</tr>
 		{/if}
 		
@@ -205,7 +205,7 @@
 				<td>
 					<ul>
 					{foreach from=$article.associatedPerson item=person}
-						<li><span class="comment">{$person.type|ucfirst}</span>: {$person.name|htmlspecialchars} ({$person.dateBegin} - {$person.dateEnd})</li>
+						<li><span class="comment">{$person.type|ucfirst}</span>: {$person.name|escape} ({$person.dateBegin} - {$person.dateEnd})</li>
 					{/foreach}
 					</ul>
 				</td>
@@ -218,7 +218,7 @@
 				<td>
 					<ul>
 					{foreach from=$article.associatedOrganisation item=organisation}
-						<li><span class="comment">{$organisation.type|ucfirst}</span>: {$organisation.name|htmlspecialchars} ({$organisation.dateBegin} - {$organisation.dateEnd})</li>
+						<li><span class="comment">{$organisation.type|ucfirst}</span>: {$organisation.name|escape} ({$organisation.dateBegin} - {$organisation.dateEnd})</li>
 					{/foreach}
 					</ul>
 				</td>
@@ -231,7 +231,7 @@
 				<td>
 					<ul>
 					{foreach from=$article.associatedExpedition item=expedition}
-						<li><span class="comment">{$expedition.type|ucfirst}</span>: {$expedition.name|htmlspecialchars} ({$expedition.dateBegin} - {$expedition.dateEnd})</li>
+						<li><span class="comment">{$expedition.type|ucfirst}</span>: {$expedition.name|escape} ({$expedition.dateBegin} - {$expedition.dateEnd})</li>
 					{/foreach}
 					</ul>
 				</td>
@@ -242,7 +242,7 @@
 			{if $article.placeName}
 				<tr>
 					<td>Location:</td>
-					<td>{$article.placeName|htmlspecialchars}</td>
+					<td>{$article.placeName|escape}</td>
 				</tr>
 			{/if}
 		{/if}
@@ -282,7 +282,7 @@
 						<td>All images for this article:</td>
 						<td>
 							{foreach from=$article.images item=image}
-								<img class="shadow" width="{$image.width}" height="{$image.height}" src="/images/general/item.gif" style="background-image: url('{$image.path}');" alt="Image" title="Image (c) {$organisationName|htmlspecialchars}" />
+								<img class="shadow" width="{$image.width}" height="{$image.height}" src="/images/general/item.gif" style="background-image: url('{$image.path}');" alt="Image" title="Image (c) {$organisationName|escape}" />
 							{/foreach}
 						</td>
 					</tr>
@@ -310,7 +310,7 @@
 	
 	{$shoppingCartButtons}
 	
-	{if isSet($contextHtml)}
+	{if isset($contextHtml)}
 	<h2>Related links</h2>
 	<ul>
 		<li>{$contextHtml}</li>
